@@ -32,14 +32,12 @@ class Student{
     this.savedMarks = this.marks;
     this.marks = null;
   }
-
 // 7.Створіть метод this.recover, який дозволить поновити студента
   recover(){
     this.dismissed = false;
     this.marks = this.savedMarks;
     this.savedMarks = null;
   }
-
 // 3.Створіть геттер оцінок this.marks, який повертає масив оцінок студента [5, 4, 4, 5]
   get marksStud(){
     return this.marks;
