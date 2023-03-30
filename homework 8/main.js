@@ -90,7 +90,7 @@ class BudgetStudent extends Student{
   }
 }
 
-let budgetStudent = new BudgetStudent('Вищої Школи Психотерапії м.Одеса', 2, 'Ксенія Валентинівна Боденко');
+let budgetStudent = new BudgetStudent('Вищої Школи Психотерапії м.Одеса', 2, 'Ксенія Василівна Боденко');
 budgetStudent.getScholarship();
 budgetStudent.getInfo();
 console.log(budgetStudent.marks);
