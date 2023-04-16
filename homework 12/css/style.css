@@ -9,7 +9,7 @@ body {
 }
 
 .wrapper {
-  background: url(/img/bg.jpg) no-repeat;
+  background: url(../img/bg.jpg) no-repeat;
   background-size: cover;
   height: 800px;
   background-position: center;
@@ -79,8 +79,8 @@ body {
 
 .card-character img,
 .card-planets img {
-  width: 250px; /* задати ширину фото */
-  height: auto; /* зберегти пропорції */
+  width: 250px;
+  height: auto;
 }
 
 
