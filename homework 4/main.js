@@ -1,67 +1,79 @@
-const students = ["Олександр", "Ігор", "Олена", "Іра", "Олексій", "Світлана"];
-const themes = ["Диференційне рівняння", "Теорія автоматів", "Алгоритми і структури даних"];
-const marks = [4, 5, 5, 3, 4, 5];
+const students = ["Олександр", "Ігор", "Олена", "Іра", "Олексій", "Світлана",];
+const themes = ["Диференційне рівняння", "Теорія автоматів", "Алгоритми і структури даних",];
+const marks = [4, 5, 5, 3, 4, 5,];
 
+/* 1.Розділіть студентів на пари(хлопець + дівчина). У вас повинен вийти вкладений масив з парами студентів:
+[["Олександр", "Олена"], [..], [...]]; */
 
-// 1.Розділіть студентів на пари(хлопець + дівчина) для работи над проєктом.
-
-const femaleNames = [];
-const maleNames = [];
-
-for(let i = 0; i < students.length; i++) {
-  if(students[i].slice(-1) === "а") {
-    femaleNames.push(students[i]);
-  } else {
-    maleNames.push(students[i]);
-  }
-}
-
-function getStudentPairs(namesF, namesM) {
+function getPairs(students) {
   const pairs = [];
-  for (let i = 0; i < namesM.length; i++) {
-    pairs.push([namesM[i], namesF[i]]);
+  const male = [];
+  const female = [];
+
+  for (let i = 0; i < students.length; i++) {
+    let student = (students[i]);
+
+    if (student[student.length -1] === 'а') {
+      female.push(student);
+    } else {
+      male.push(student);
+    }
   }
+
+  for (let i = 0; i < male.length; i++) {
+    let par = [male[i], female[i]];
+    pairs.push(par);
+  }
+
   return pairs;
 }
 
-const pairsOfStudents = getStudentPairs(maleNames, femaleNames)
-console.log(pairsOfStudents);
+const pairs = getPairs(students);
+console.log(pairs);
 
-// 2.Зіставте пари з попереднього завдання та теми проєктів, над якими студенти будуть працювати. 
+/* 2.Зіставте пари з попереднього завдання та теми проєктів, над якими студенти будуть працювати.
+Повинен вийти вкладений масив виду: [["Олександр і Олена", "Теорія автоматів"], [...], [...]] */
 
-function matchPairsAndTopics(pairs, topics) {
-  const pairsAndTopics = [];
+function givePairsTopics(pairs, topics) {
+  const pairsWithTopics = [];
+
   for (let i = 0; i < pairs.length; i++) {
-    pairsAndTopics.push([pairs[i], topics[i]]);
+    pairsWithTopics.push(pairs[i].concat(topics[i]));
   }
-  return pairsAndTopics;
+
+  return pairsWithTopics;
 }
 
-const pairsWithTopics = matchPairsAndTopics(pairsOfStudents, themes);
-console.log(pairsWithTopics); 
+const topicsForPairs = givePairsTopics(pairs, themes);
+console.log(topicsForPairs);
 
-// 3.Зіставте оцінки(marks) зі студентом(students)
+// 3.Зіставте оцінки(marks) зі студентом(students): [["Саша", 4], [...], [...]]
 
-function сompareMarcWithStudent(student, mark) {
-  const marksStudents = [];
-  for (let i = 0; i < student.length; i++) {
-    marksStudents.push([student[i], mark[i]]);
+function giveMarksStudents(students, marks) {
+  marksOfStud = [];
+
+  for (let i = 0; i < students.length; i++) {
+    marksOfStud.push([students[i], marks[i]]);
   }
-  return marksStudents;
+
+  return marksOfStud;
 }
 
-const studentsMarks = сompareMarcWithStudent(students, marks);
-console.log(studentsMarks);
+const marksOfStudents = giveMarksStudents(students, marks);
+console.log(marksOfStudents);
 
-// 4. Поставте кожній парі випадкову оцінку (від 1 до 5) за проєкт
+// 4.Поставте кожній парі випадкову оцінку(від 1 до 5) за проєкт: [["Олександр і Олена", "Теорія автоматів", 5], [...], [...]]
 
-function getRandomMark (pair) {
-  const randomMark = [];
-  for (let i = 0; i < pair.length; i++) {
-    randomMark.push([pair[i], (Math.floor(Math.random() * 5) + 1)]);
+function giveMarksPairs(pairs) {
+  const marksOfSPairs = [];
+
+  for (let pair of pairs) {
+    let randomMark = Math.ceil(Math.random() * 5);
+    marksOfSPairs.push([...pair, randomMark]);
   }
-  return randomMark;
+
+  return marksOfSPairs;
 }
 
-const randomMarks = getRandomMark(pairsWithTopics);
-console.log(randomMarks);
+const marksOfSPairs = giveMarksPairs(topicsForPairs);
+console.log(marksOfSPairs);
